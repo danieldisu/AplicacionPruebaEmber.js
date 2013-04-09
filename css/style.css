@@ -1,0 +1,38 @@
+/* Put your CSS here */
+html, body {
+    margin: 20px;
+}
+.container{
+	max-width: 960px;
+	margin: auto;
+}
+.disabled{
+	disabled:disabled;
+}
+
+.error{
+	width: 100%;
+	text-align: center;
+	color:red;
+	font-size: 1.25em;
+	display: block;
+	font-weight: bold;
+}
+
+.ember-text-field{
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.signInButton{
+	margin-top:15px;
+}
+
+.inputGroup *{
+	display: inline-block;
+}
+
+.inputGroup label{
+	width: 180px;
+}

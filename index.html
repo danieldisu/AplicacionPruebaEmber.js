@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ember Starter Kit</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script type="text/x-handlebars">
+  <div class="container">
+	<h1> Primera Aplicacion con Ember.js </h1>
+	{{outlet}}
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="index">	
+		{{#if App.mainUser.isInvalid }}
+			<div class="error">
+				<p>Los nombres no coinciden</p>
+			</div>
+		{{/if}}
+		<div class="inputGroup">
+			<label> Introduce tu nombre: </label> {{view Ember.TextField valueBinding="App.mainUser.name"}}
+		</div>
+		<div class="inputGroup">
+			<label> Repite tu nombre: </label> {{view Ember.TextField valueBinding="App.mainUser.nameRepeated"}}
+		</div>
+  	{{#linkTo "list"}}<input type="button" {{bindAttr disabled="App.mainUser.isInvalid"}}value=" Sign in" class="signInButton" > {{/linkTo}}
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="list">
+  	{{#if App.mainUser.name}}
+  		{{outlet}}
+  	{{else}}
+  		<p>No ha introducido ningun nombre</p>
+  		{{#linkTo "index"}} Volver {{/linkTo}}
+  	{{/if}}
+  </script>
+  <script type="text/x-handlebars" data-template-name="list/index">
+  		<div class="welcomeBox"><h3>Bienvenido {{App.mainUser.name}}</h3></div>
+  		<div class="listBox">
+  			{{#linkTo "list.select"}}<input type="button" value="Ver Lista Colores">{{/linkTo}}
+  			<input type="button" value="Color">
+  		</div>  	
+  </script>
+  <script type="text/x-handlebars" data-template-name="list/select">
+  	hola mundo
+  </script>
+
+  <script src="js/libs/jquery-1.9.1.js"></script>
+  <script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
+  <script src="js/libs/ember-1.0.0-rc.2.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
