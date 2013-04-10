@@ -50,13 +50,18 @@
   </script>
   <script type="text/x-handlebars" data-template-name="menu/selectColor">
     <form class="listaColores">
-    {{#each App.colores}}
-    {{view Ember.RadioButtons groupBinding="colours" valueBinding=""}}{{name}}
-    {{/each}}
+      {{#each App.colorController.colores}}
+       {{view Ember.Checkbox checkedBinding="isChecked"}}{{name}}
+      {{/each}}
     </form>
   </script>
   <script type="text/x-handlebars" data-template-name="menu/watchColor">
-    Aquí mostraremos el color seleccionado.
+    {{#each App.colores}}
+      {{#if isChecked}}
+        <div class="">
+        </div>
+      {{/if}}
+    {{/each}}
   </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>
