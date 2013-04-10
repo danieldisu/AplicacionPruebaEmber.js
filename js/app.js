@@ -3,16 +3,23 @@ App = Ember.Application.create({
 });
 
 App.Router.map(function() {
-	this.resource("list",{path : "/list" },function(){
-		this.route("select");
+	this.resource("menu",{path : "/menu" },function(){
+		this.route("selectColor");
+		this.route("watchColor");
 	})
 });
 
-App.ListSelectRoute = Ember.Route.extend({
+App.MenuSelectColorRoute = Ember.Route.extend({
 	setupController : function(){
-		alert("hola")
+		
 	}
-})
+});
+
+App.MenuWatchColorRoute = Ember.Route.extend({
+	setupController : function(){
+		
+	}
+});
 
 App.User = Ember.Object.extend({
 	name : "",
@@ -20,21 +27,35 @@ App.User = Ember.Object.extend({
 	isInvalid : function(){
 		var invalid = true;
 		var firstName = this.get("name");
-		var repeatName =  this.get("nameRepeated");
-		if(firstName != "" && repeatName != "" && (firstName == repeatName)){
+		var secondName =  this.get("nameRepeated");
+		if(firstName != "" && secondName != "" && (firstName == secondName)){
 			invalid = false;
 		}
 		return invalid
+	}.property("name","nameRepeated"),
+	isEmpty : function(){
+		var empty = true;
+		var firstName = this.get("name");
+		var secondName =  this.get("nameRepeated");
+		if(firstName != "" && secondName != "" || firstName != "" && secondName == ""){
+			empty = false;
+		}
+		return empty
 	}.property("name","nameRepeated")
-})
-
+});
+/* Creo un objeto Color */
+App.Color = Ember.Object.extend({
+	name: "",
+	isChecked: false,
+});
 App.IndexRoute = Ember.Route.extend({
 
 });
-
-
-
-
 App.mainUser = App.User.create({
 
-})
+});
+App.colores = Ember.makeArray([
+	App.Color.create({name: "yellow"}),
+	App.Color.create({name: "red"}),
+	App.Color.create({name: "blue"})
+]);

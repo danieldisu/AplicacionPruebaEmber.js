@@ -16,21 +16,24 @@
   </script>
 
   <script type="text/x-handlebars" data-template-name="index">	
-		{{#if App.mainUser.isInvalid }}
+		{{#unless App.mainUser.isEmpty}}
+    {{#if App.mainUser.isInvalid }}
 			<div class="error">
 				<p>Los nombres no coinciden</p>
 			</div>
 		{{/if}}
+    {{/unless}}
 		<div class="inputGroup">
 			<label> Introduce tu nombre: </label> {{view Ember.TextField valueBinding="App.mainUser.name"}}
 		</div>
 		<div class="inputGroup">
 			<label> Repite tu nombre: </label> {{view Ember.TextField valueBinding="App.mainUser.nameRepeated"}}
 		</div>
-  	{{#linkTo "list"}}<input type="button" {{bindAttr disabled="App.mainUser.isInvalid"}}value=" Sign in" class="signInButton" > {{/linkTo}}
+  	{{#linkTo "menu"}}<input type="button" {{bindAttr disabled="App.mainUser.isInvalid"}}value=" Sign in" class="signInButton" > {{/linkTo}}
+    <p></p>
   </script>
 
-  <script type="text/x-handlebars" data-template-name="list">
+  <script type="text/x-handlebars" data-template-name="menu">
   	{{#if App.mainUser.name}}
   		{{outlet}}
   	{{else}}
@@ -38,15 +41,22 @@
   		{{#linkTo "index"}} Volver {{/linkTo}}
   	{{/if}}
   </script>
-  <script type="text/x-handlebars" data-template-name="list/index">
+  <script type="text/x-handlebars" data-template-name="menu/index">
   		<div class="welcomeBox"><h3>Bienvenido {{App.mainUser.name}}</h3></div>
   		<div class="listBox">
-  			{{#linkTo "list.select"}}<input type="button" value="Ver Lista Colores">{{/linkTo}}
-  			<input type="button" value="Color">
+  			{{#linkTo "menu.selectColor"}}<input type="button" value="Ver Lista Colores">{{/linkTo}}
+  			{{#linkTo "menu.watchColor"}}<input type="button" value="Color">{{/linkTo}}
   		</div>  	
   </script>
-  <script type="text/x-handlebars" data-template-name="list/select">
-  	hola mundo
+  <script type="text/x-handlebars" data-template-name="menu/selectColor">
+    <form class="listaColores">
+    {{#each App.colores}}
+    {{view Ember.RadioButtons groupBinding="colours" valueBinding=""}}{{name}}
+    {{/each}}
+    </form>
+  </script>
+  <script type="text/x-handlebars" data-template-name="menu/watchColor">
+    Aquí mostraremos el color seleccionado.
   </script>
 
   <script src="js/libs/jquery-1.9.1.js"></script>
