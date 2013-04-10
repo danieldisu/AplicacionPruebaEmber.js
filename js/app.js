@@ -19,7 +19,7 @@ App.User = Ember.Object.extend({
 		if(firstName != "" && secondName != "" && (firstName == secondName)){
 			invalid = false;
 		}
-		return invalid
+		return invalid;
 	}.property("name","nameRepeated"),
 	isEmpty : function(){
 		var empty = true;
@@ -28,11 +28,9 @@ App.User = Ember.Object.extend({
 		if(firstName != "" && secondName != "" || firstName != "" && secondName == ""){
 			empty = false;
 		}
-		return empty
+		return empty;
 	}.property("name","nameRepeated")
 });
-
-/* Creo un objeto Color */
 
 App.IndexRoute = Ember.Route.extend({
 
@@ -50,7 +48,7 @@ App.selectedColorName = "red";
 
 App.MenuSelectColorController = Ember.ArrayController.extend({
 	changeSelectedColor : function(selectedColor){
-		alert("cambiando de "+ App.selectedColorName + " a " +selectedColor.get("name"))
+		/*Cambiando de  App.selectedColorName  a selectedColor.get("name")*/
 		App.set("selectedColorName", selectedColor.get("name"));
 	}, 
 })
@@ -58,9 +56,9 @@ App.MenuSelectColorController = Ember.ArrayController.extend({
 App.MenuSelectColorRoute = Ember.Route.extend({
 	model : function(){	
 		App.colors=[];
-		var color1 = App.Color.create({name: 'red', isChecked: false})
-		var color2 = App.Color.create({name: 'yellow', isChecked: false})
-		var color3 =App.Color.create({name: 'blue', isChecked: false})
+		var color1 = App.Color.create({name: 'red'})
+		var color2 = App.Color.create({name: 'yellow'})
+		var color3 =App.Color.create({name: 'blue'})
 			App.colors.push(color1)
 			App.colors.push(color2)
 			App.colors.push(color3)
