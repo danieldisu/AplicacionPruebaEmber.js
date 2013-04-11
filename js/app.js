@@ -32,13 +32,9 @@ App.User = Ember.Object.extend({
 	}.property("name","nameRepeated")
 });
 
-App.IndexRoute = Ember.Route.extend({
+App.IndexRoute = Ember.Route.extend({});
 
-});
-
-App.mainUser = App.User.create({
-
-});
+App.mainUser = App.User.create({});
 
 App.Color = Ember.Object.extend({
 	name: ""
@@ -71,3 +67,4 @@ App.MenuWatchColorRoute = Ember.Route.extend({
 		
 	}
 });
+
