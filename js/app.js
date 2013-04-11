@@ -67,4 +67,3 @@ App.MenuWatchColorRoute = Ember.Route.extend({
 		
 	}
 });
-
